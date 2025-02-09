@@ -48,18 +48,16 @@ bool sudokuSolver(int sudoku[9][9], int row, int col) {
         nextRow = row + 1;
         nextCol = 0;
     }
-
     if(sudoku[row][col] != 0) {
         return sudokuSolver(sudoku, nextRow, nextCol);
     }
-
     for(int digit=1; digit<=9; digit++) {
         if(isSafe(sudoku, row, col, digit)) {
             sudoku[row][col] = digit;
             if(sudokuSolver(sudoku, nextRow, nextCol)) {
                 return true;
             }
-            sudoku[row][col] = 0;
+            sudoku[row][col] = 0; // Backtracking step
         }
     }
     return false;
